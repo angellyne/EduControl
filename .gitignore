@@ -28,3 +28,4 @@ desktop.ini
 *.tmp
 *.bak
 .cache/
+*.save
