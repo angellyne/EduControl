@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>EduControl - Sistema de Gestão Escolar</title>
+<title>Dashboard - EduControl</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,184 +13,52 @@
     <span class="logo">🎓</span>
     <h1>EduControl <small>v2.0</small></h1>
   </div>
-  <nav class="tabs" id="tabs">
-    <button class="tab active" data-tab="dashboard">Dashboard</button>
-    <button class="tab" data-tab="escolas">Escolas &amp; Docentes</button>
-    <button class="tab" data-tab="disciplinas">Disciplinas</button>
-    <button class="tab" data-tab="turmas">Turmas</button>
-    <button class="tab" data-tab="alunos">Alunos &amp; Responsáveis</button>
-    <button class="tab" data-tab="matriculas">Matrículas</button>
-    <button class="tab" data-tab="frequencia">Frequência</button>
+  <nav class="tabs">
+    <a class="tab active" href="index.html">Dashboard</a>
+    <a class="tab" href="escolas.html">Escolas &amp; Docentes</a>
+    <a class="tab" href="disciplinas.html">Disciplinas</a>
+    <a class="tab" href="turmas.html">Turmas</a>
+    <a class="tab" href="alunos.html">Alunos &amp; Responsáveis</a>
+    <a class="tab" href="matriculas.html">Matrículas</a>
+    <a class="tab" href="frequencia.html">Frequência</a>
   </nav>
 </header>
 
 <main>
-
-  <!-- DASHBOARD -->
-  <section id="dashboard" class="panel active">
-    <h2>Painel Geral</h2>
-    <div class="cards">
-      <div class="card"><span id="stat-escolas">0</span><p>Escolas</p></div>
-      <div class="card"><span id="stat-professores">0</span><p>Professores</p></div>
-      <div class="card"><span id="stat-disciplinas">0</span><p>Disciplinas</p></div>
-      <div class="card"><span id="stat-turmas">0</span><p>Turmas</p></div>
-      <div class="card"><span id="stat-alunos">0</span><p>Alunos</p></div>
-      <div class="card"><span id="stat-matriculas">0</span><p>Matrículas</p></div>
-    </div>
-    <p class="hint">SLA esperado: 99,8% • Dados salvos localmente (localStorage) para demonstração.</p>
-  </section>
-
-  <!-- ESCOLAS E DOCENTES -->
-  <section id="escolas" class="panel">
-    <h2> Gestão de Escolas e Docentes</h2>
-    <div class="grid-2">
-      <form id="form-escola" class="form">
-        <h3>Nova Escola</h3>
-        <label>Nome da Unidade <input name="nome" required /></label>
-        <label>Endereço <input name="endereco" /></label>
-        <label>CNPJ <input name="cnpj" /></label>
-        <button type="submit">Cadastrar Escola</button>
-      </form>
-
-      <form id="form-professor" class="form">
-        <h3>Novo Professor</h3>
-        <label>Nome <input name="nome" required /></label>
-        <label>CPF (único) <input name="cpf" required /></label>
-        <label>E-mail (único) <input type="email" name="email" required /></label>
-        <label>Escola de Lotação
-          <select name="id_escola" id="select-escola-prof" required></select>
-        </label>
-        <button type="submit">Cadastrar Professor</button>
-      </form>
-    </div>
-
-    <h3>Escolas Cadastradas</h3>
-    <table id="tabela-escolas"><thead><tr><th>ID</th><th>Nome</th><th>Endereço</th><th>CNPJ</th><th>Ações</th></tr></thead><tbody></tbody></table>
-
-    <h3>Professores Cadastrados</h3>
-    <table id="tabela-professores"><thead><tr><th>ID</th><th>Nome</th><th>CPF</th><th>E-mail</th><th>Escola</th><th>Ações</th></tr></thead><tbody></tbody></table>
-  </section>
-
-  <!-- DISCIPLINAS -->
-  <section id="disciplinas" class="panel">
-    <h2>Disciplinas e Matriz Curricular</h2>
-    <form id="form-disciplina" class="form inline">
-      <label>Nome da Disciplina <input name="nome" required /></label>
-      <label>Carga Horária <input name="carga" type="number" min="1" /></label>
-      <button type="submit">Cadastrar Disciplina</button>
-    </form>
-    <table id="tabela-disciplinas"><thead><tr><th>ID</th><th>Nome</th><th>Carga Horária</th><th>Ações</th></tr></thead><tbody></tbody></table>
-
-    <h3>Vincular Disciplina + Professor à Turma (N:M)</h3>
-    <form id="form-vinculo" class="form inline">
-      <label>Turma <select name="id_turma" id="select-turma-vinculo" required></select></label>
-      <label>Disciplina <select name="id_disciplina" id="select-disciplina-vinculo" required></select></label>
-      <label>Professor <select name="id_professor" id="select-professor-vinculo" required></select></label>
-      <button type="submit">Vincular</button>
-    </form>
-    <table id="tabela-vinculos"><thead><tr><th>Turma</th><th>Disciplina</th><th>Professor</th><th>Ações</th></tr></thead><tbody></tbody></table>
-  </section>
-
-  <!-- TURMAS -->
-  <section id="turmas" class="panel">
-    <h2>Gestão de Turmas</h2>
-    <form id="form-turma" class="form inline">
-      <label>Série <input name="serie" required /></label>
-      <label>Ano Letivo <input name="ano" type="number" required /></label>
-      <label>Nº de Chamada <input name="chamada" type="number" /></label>
-      <label>Capacidade <input name="capacidade" type="number" min="1" /></label>
-      <label>Escola <select name="id_escola" id="select-escola-turma" required></select></label>
-      <button type="submit">Criar Turma</button>
-    </form>
-    <table id="tabela-turmas">
-      <thead><tr><th>ID</th><th>Série</th><th>Ano</th><th>Chamada</th><th>Capacidade</th><th>Qtd. Alunos</th><th>Escola</th><th>Ações</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <p class="hint"> o campo <em>quantidade_aluno</em> é recalculado automaticamente (simulação de trigger).</p>
-  </section>
-
-  <!-- ALUNOS E RESPONSÁVEIS -->
-  <section id="alunos" class="panel">
-    <h2>Cadastro de Alunos e Responsáveis</h2>
-    <div class="grid-2">
-      <form id="form-aluno" class="form">
-        <h3>Novo Aluno</h3>
-        <label>Nome <input name="nome" required /></label>
-        <label>CPF (único) <input name="cpf" required /></label>
-        <label>Data de Nascimento <input type="date" name="nascimento" required /></label>
-        <label>Foto (URL) <input name="foto" /></label>
-        <label>Turma <select name="id_turma" id="select-turma-aluno"></select></label>
-        <button type="submit">Cadastrar Aluno</button>
-      </form>
-
-      <form id="form-responsavel" class="form">
-        <h3>Novo Responsável</h3>
-        <label>Nome <input name="nome" required /></label>
-        <label>CPF (único) <input name="cpf" required /></label>
-        <label>Telefone <input name="telefone" /></label>
-        <label>Vincular ao Aluno
-          <select name="id_aluno" id="select-aluno-resp" required></select>
-        </label>
-        <label>Grau de Parentesco
-          <select name="parentesco" required>
-            <option value="">Selecione...</option>
-            <option>Mãe</option><option>Pai</option><option>Avô/Avó</option>
-            <option>Tio/Tia</option><option>Tutor Legal</option><option>Outro</option>
-          </select>
-        </label>
-        <button type="submit">Cadastrar Responsável</button>
-      </form>
-    </div>
-
-    <h3>Alunos</h3>
-    <table id="tabela-alunos"><thead><tr><th>ID</th><th>Nome</th><th>CPF</th><th>Nascimento</th><th>Idade</th><th>Turma</th><th>Responsáveis</th><th>Ações</th></tr></thead><tbody></tbody></table>
-
-    <h3>Responsáveis</h3>
-    <table id="tabela-responsaveis"><thead><tr><th>ID</th><th>Nome</th><th>CPF</th><th>Telefone</th><th>Ações</th></tr></thead><tbody></tbody></table>
-  </section>
-
-  <!-- MATRÍCULAS -->
-  <section id="matriculas" class="panel">
-    <h2> Emissão e Controle de Matrículas</h2>
-    <form id="form-matricula" class="form inline">
-      <label>Aluno <select name="id_aluno" id="select-aluno-matricula" required></select></label>
-      <label>Período Letivo <input name="periodo" placeholder="Ex.: 2026" required /></label>
-      <label>Comprovante de Residência (URL) <input name="comprovante" /></label>
-      <button type="submit">Emitir Matrícula</button>
-    </form>
-    <table id="tabela-matriculas">
-      <thead><tr><th>Nº Matrícula</th><th>Aluno</th><th>Período</th><th>Data</th><th>Comprovante</th><th>Ações</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <p class="hint">um aluno só pode ter um registro ativo de matrícula por período letivo.</p>
-  </section>
-
-  <!-- FREQUÊNCIA -->
-  <section id="frequencia" class="panel">
-    <h2>Controle de Frequência e Histórico de Presença</h2>
-    <form id="form-frequencia" class="form inline">
-      <label>Aluno <select name="id_aluno" id="select-aluno-freq" required></select></label>
-      <label>Data <input type="date" name="data" id="freq-data" required /></label>
-      <label>Hora Entrada <input type="time" name="hora_entrada" id="freq-entrada" required /></label>
-      <label>Hora Saída <input type="time" name="hora_saida" id="freq-saida" /></label>
-      <label>Status
-        <select name="status" id="freq-status">
-          <option>PRESENTE</option><option>FALTA</option><option>ATRASADO</option>
-        </select>
-      </label>
-      <button type="submit">Registrar</button>
-    </form>
-    <table id="tabela-frequencia">
-      <thead><tr><th>ID</th><th>Aluno</th><th>Data</th><th>Entrada</th><th>Saída</th><th>Status</th><th>Ações</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <p class="hint">a hora de saída deve ser posterior à de entrada.</p>
-  </section>
-
+  <h2>Painel Geral</h2>
+  <div class="cards">
+    <div class="card"><span id="stat-escolas">0</span><p>Escolas</p></div>
+    <div class="card"><span id="stat-professores">0</span><p>Professores</p></div>
+    <div class="card"><span id="stat-disciplinas">0</span><p>Disciplinas</p></div>
+    <div class="card"><span id="stat-turmas">0</span><p>Turmas</p></div>
+    <div class="card"><span id="stat-alunos">0</span><p>Alunos</p></div>
+    <div class="card"><span id="stat-matriculas">0</span><p>Matrículas</p></div>
+  </div>
+  <p class="hint">SLA esperado: 99,8% • Dados salvos no MySQL via API</p>
 </main>
 
 <div id="toast" class="toast"></div>
-
 <script src="app.js"></script>
+<script>
+(async () => {
+  try {
+    const [escolas, professores, disciplinas, turmas, alunos, matriculas] = await Promise.all([
+      get('/escolas'), get('/professores'), get('/disciplinas'),
+      get('/turmas'), get('/alunos'),
+      get('/matriculas').catch(() => [])
+    ]);
+    const set = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+    set('stat-escolas', escolas.length);
+    set('stat-professores', professores.length);
+    set('stat-disciplinas', disciplinas.length);
+    set('stat-turmas', turmas.length);
+    set('stat-alunos', alunos.length);
+    set('stat-matriculas', matriculas.length);
+  } catch(e){
+    console.error(e);
+    toast('Backend offline. Rode "npm start" no backend.', 'error');
+  }
+})();
+</script>
 </body>
 </html>

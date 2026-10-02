@@ -29,3 +29,6 @@ desktop.ini
 *.bak
 .cache/
 *.save
+
+# Uploads (fotos e comprovantes)
+backend/uploads/

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Disciplinas - EduControl</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🎓</span>
+    <h1>EduControl <small>v2.0</small></h1>
+  </div>
+  <nav class="tabs">
+    <a class="tab" href="index.html">Dashboard</a>
+    <a class="tab" href="escolas.html">Escolas &amp; Docentes</a>
+    <a class="tab active" href="disciplinas.html">Disciplinas</a>
+    <a class="tab" href="turmas.html">Turmas</a>
+    <a class="tab" href="alunos.html">Alunos &amp; Responsáveis</a>
+    <a class="tab" href="matriculas.html">Matrículas</a>
+    <a class="tab" href="frequencia.html">Frequência</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Disciplinas e Matriz Curricular</h2>
+
+  <form id="form-disciplina" class="form inline">
+    <label>Nome da Disciplina <input name="nome" required /></label>
+    <label>Carga Horária <input name="carga" type="number" min="1" /></label>
+    <button type="submit">Cadastrar Disciplina</button>
+  </form>
+
+  <h3>Disciplinas Cadastradas</h3>
+  <table id="tabela-disciplinas">
+    <thead><tr><th>ID</th><th>Nome</th><th>Carga Horária</th><th>Ações</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</main>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+<script>
+async function carregar(){
+  try {
+    const disciplinas = await get('/disciplinas');
+    const tb = $('#tabela-disciplinas tbody');
+    tb.innerHTML = disciplinas.length
+      ? disciplinas.map(d => `<tr><td>${d.id_disciplina}</td><td>${d.nome}</td><td>${d.carga_horaria?d.carga_horaria+'h':'—'}</td><td><button class="btn-del" onclick="excluir('disciplinas', ${d.id_disciplina}, carregar)">Excluir</button></td></tr>`).join('')
+      : `<tr><td colspan="4" class="empty">Nenhuma disciplina cadastrada.</td></tr>`;
+  } catch(e){ toast('Erro ao carregar.', 'error'); }
+}
+
+bind('form-disciplina', '/disciplinas', f => ({
+  nome: f.nome.value.trim(),
+  carga: f.carga.value
+}), 'Disciplina cadastrada!', carregar);
+
+carregar();
+</script>
+</body>
+</html>

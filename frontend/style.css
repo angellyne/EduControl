@@ -697,3 +697,19 @@ tbody tr:nth-child(5){ animation-delay: .15s; }
 .brand .logo{
   animation: wiggle 3s ease-in-out infinite;
 }
+input[type="file"] {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+input[type="file"]:hover {
+  border-color: #0a4d8c;
+  background: #f0f6ff;
+}
+#preview-foto img, #preview-comprovante img {
+  display: block;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(10,77,140,.12);
+}
