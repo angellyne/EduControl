@@ -25,7 +25,8 @@
 </header>
 
 <main>
-  <h2>Disciplinas e Matriz Curricular</h2>
+  <section class="hero-banner banner-escola"><div class="hero-content"><span class="hero-tag">Estrutura Acadêmica</span><h2 class="hero-title">Disciplinas</h2><p class="hero-subtitle">Cadastre disciplinas e defina a matriz curricular.</p></div></section>
+<h2>Disciplinas e Matriz Curricular</h2>
 
   <form id="form-disciplina" class="form inline">
     <label>Nome da Disciplina <input name="nome" required /></label>
@@ -60,5 +61,49 @@ bind('form-disciplina', '/disciplinas', f => ({
 
 carregar();
 </script>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="footer-logo-icon">🎓</span>
+        <div>
+          <div class="footer-logo-name">EduControl</div>
+          <div class="footer-logo-tag">Sistema de Gestão Escolar</div>
+        </div>
+      </div>
+      <p class="footer-desc">
+        Plataforma completa para gestão de escolas, professores, turmas e alunos.
+        Digitalize o ecossistema escolar com eficiência.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Módulos</h4>
+      <a href="escolas.html">Escolas</a>
+      <a href="disciplinas.html">Disciplinas</a>
+      <a href="turmas.html">Turmas</a>
+      <a href="alunos.html">Alunos</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Gestão</h4>
+      <a href="matriculas.html">Matrículas</a>
+      <a href="frequencia.html">Frequência</a>
+      <a href="index.html">Dashboard</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="#">contato.com</a>
+      <a href="#">(11) 9999-9999</a>
+      <a href="#">Suporte técnico</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 EduControl. Todos os direitos reservados.</span>
+    <span>Feito para gestão escolar</span>
+  </div>
+</footer>
 </body>
 </html>
